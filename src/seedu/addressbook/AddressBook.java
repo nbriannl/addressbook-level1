@@ -625,13 +625,14 @@ public class AddressBook {
             while (inputLine.trim().isEmpty() || inputLine.trim().charAt(0) == INPUT_COMMENT_MARKER) {
                 inputLine = SCANNER.nextLine();
             }
-            if (inputLine.equals("Y") || inputLine.equals("N")) break;
+            //System.out.println("scanned --> " + inputLine);
+            if (inputLine.trim().equals("Y") || inputLine.trim().equals("N")) break;
             else {
                 showToUser("Invalid Input. Please Enter Y or N");
             }
         }
 
-        return inputLine.equals("Y");
+        return inputLine.trim().equals("Y");
     }
 
 
@@ -825,12 +826,10 @@ public class AddressBook {
         String personEmail = person[PERSON_DATA_INDEX_EMAIL];
         String personPhone = person[PERSON_DATA_INDEX_PHONE];
 
-
         HashMap<PersonProperty, String> personToAdd = new HashMap<>();
         personToAdd.put(PersonProperty.NAME, personName);
         personToAdd.put(PersonProperty.EMAIL, personEmail);
         personToAdd.put(PersonProperty.PHONE, personPhone);
-
 
         ALL_PERSONS.add(personToAdd);
         savePersonsToFile(getAllPersonsInAddressBook(), storageFilePath);
@@ -878,12 +877,10 @@ public class AddressBook {
             String personEmail = personFromFile[PERSON_DATA_INDEX_EMAIL];
             String personPhone = personFromFile[PERSON_DATA_INDEX_PHONE];
 
-
             HashMap<PersonProperty, String> personToAdd = new HashMap<>();
             personToAdd.put(PersonProperty.NAME, personName);
             personToAdd.put(PersonProperty.EMAIL, personEmail);
             personToAdd.put(PersonProperty.PHONE, personPhone);
-
 
             ALL_PERSONS.add(personToAdd);
         }
@@ -986,7 +983,8 @@ public class AddressBook {
      * @param persons to be encoded
      * @return encoded strings
      */
-    private static ArrayList<String> encodePersonsToStrings(ArrayList<HashMap<PersonProperty, String>> persons) {
+    private static ArrayList<String> encodePersonsToStrings(
+            ArrayList<HashMap<PersonProperty, String>> persons) {
         final ArrayList<String> encoded = new ArrayList<>();
         for (HashMap<PersonProperty, String> person : persons) {
             encoded.add(encodePersonToString(person));

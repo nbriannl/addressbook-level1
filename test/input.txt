@@ -80,16 +80,19 @@
   delete 2
   Y
   delete 2
+  Y
 
   # should have deleted based on last active view's index
   list
 
   # deletes correct person
   delete 4
+  Y
   list
 
   # listing indexes get updated on next request
   delete 1
+  Y
   list
 
 ##########################################################
