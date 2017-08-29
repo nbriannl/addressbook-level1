@@ -612,10 +612,10 @@ public class AddressBook {
     }
 
     /**
-     * Prompts for the command and reads the text entered by the user.
+     * Prompt for a Y/N response and reads the text entered by the user.
      * Ignores lines with first non-whitespace char equal to {@link #INPUT_COMMENT_MARKER} (considered comments)
      *
-     * @return full line entered by the user
+     * @return true if User responds with Y and false if N
      */
     private static boolean getUserConfirmation() {
         String inputLine;
@@ -814,7 +814,7 @@ public class AddressBook {
     /**
      *
      */
-    private enum PersonProperty {NAME, EMAIL, PHONE};
+    private enum PersonProperty {NAME, EMAIL, PHONE}
 
     /**
      * Adds a person to the address book. Saves changes to storage file.
