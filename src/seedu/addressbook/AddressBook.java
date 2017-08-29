@@ -502,8 +502,18 @@ public class AddressBook {
             return MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         }
         final HashMap<PersonProperty, String> targetInModel = getPersonByLastVisibleIndex(targetVisibleIndex);
-        return deletePersonFromAddressBook(targetInModel) ? getMessageForSuccessfulDelete(targetInModel) // success
-                                                          : MESSAGE_PERSON_NOT_IN_ADDRESSBOOK; // not found
+
+        String targetInModelName = getNameFromPerson(targetInModel);
+        System.out.println(LINE_PREFIX + "Deleting " + targetInModelName + ". Type 'YES' to confirm.");
+        System.out.print(LINE_PREFIX);
+        String response = SCANNER.nextLine();
+
+        if (response.equals("YES")) {
+            return deletePersonFromAddressBook(targetInModel) ? getMessageForSuccessfulDelete(targetInModel) // success
+                    : MESSAGE_PERSON_NOT_IN_ADDRESSBOOK; // not found
+        } else {
+            return "DID NOT CONFIRM";
+        }
     }
 
     /**
