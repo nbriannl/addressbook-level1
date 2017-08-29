@@ -78,6 +78,7 @@
 
   # should catch attempt to delete something already deleted
   delete 2
+  Y
   delete 2
 
   # should have deleted based on last active view's index

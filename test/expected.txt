@@ -237,6 +237,8 @@
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Deleted Person: Charlie Dickson  Phone Number: 333333  Email: charlie.d@nus.edu.sg
+|| Deleting Charlie Dickson. Please Confirm.
+|| Enter Y/N:
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Person could not be found in address book

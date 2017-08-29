@@ -504,8 +504,7 @@ public class AddressBook {
         final HashMap<PersonProperty, String> targetInModel = getPersonByLastVisibleIndex(targetVisibleIndex);
 
         String targetInModelName = getNameFromPerson(targetInModel);
-        System.out.println(LINE_PREFIX + "Deleting " + targetInModelName + ". Please Confirm.");
-
+        showToUser("Deleting " + targetInModelName + ". Please Confirm.");
 
         if (getUserConfirmation()) {
             return deletePersonFromAddressBook(targetInModel) ? getMessageForSuccessfulDelete(targetInModel) // success
@@ -628,7 +627,7 @@ public class AddressBook {
             }
             if (inputLine.equals("Y") || inputLine.equals("N")) break;
             else {
-                System.out.println(LINE_PREFIX + "Wrong Letter. Please Enter Y/N");
+                showToUser("Invalid Input. Please Enter Y or N");
             }
         }
 
