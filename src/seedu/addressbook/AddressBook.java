@@ -504,15 +504,14 @@ public class AddressBook {
         final HashMap<PersonProperty, String> targetInModel = getPersonByLastVisibleIndex(targetVisibleIndex);
 
         String targetInModelName = getNameFromPerson(targetInModel);
-        System.out.println(LINE_PREFIX + "Deleting " + targetInModelName + ". Type 'YES' to confirm.");
-        System.out.print(LINE_PREFIX);
-        String response = SCANNER.nextLine();
+        System.out.println(LINE_PREFIX + "Deleting " + targetInModelName + ". Please Confirm.");
 
-        if (response.equals("YES")) {
+
+        if (getUserConfirmation()) {
             return deletePersonFromAddressBook(targetInModel) ? getMessageForSuccessfulDelete(targetInModel) // success
                     : MESSAGE_PERSON_NOT_IN_ADDRESSBOOK; // not found
         } else {
-            return "DID NOT CONFIRM";
+            return "Delete Cancelled.";
         }
     }
 
@@ -611,6 +610,31 @@ public class AddressBook {
         }
         return inputLine;
     }
+
+    /**
+     * Prompts for the command and reads the text entered by the user.
+     * Ignores lines with first non-whitespace char equal to {@link #INPUT_COMMENT_MARKER} (considered comments)
+     *
+     * @return full line entered by the user
+     */
+    private static boolean getUserConfirmation() {
+        String inputLine;
+        while (true){
+            System.out.print(LINE_PREFIX + "Enter Y/N: ");
+            inputLine = SCANNER.nextLine();
+            // silently consume all blank and comment lines
+            while (inputLine.trim().isEmpty() || inputLine.trim().charAt(0) == INPUT_COMMENT_MARKER) {
+                inputLine = SCANNER.nextLine();
+            }
+            if (inputLine.equals("Y") || inputLine.equals("N")) break;
+            else {
+                System.out.println(LINE_PREFIX + "Wrong Letter. Please Enter Y/N");
+            }
+        }
+
+        return inputLine.equals("Y");
+    }
+
 
    /*
     * NOTE : =============================================================
